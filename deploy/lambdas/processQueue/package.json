@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.7.0"
+  }
+}
