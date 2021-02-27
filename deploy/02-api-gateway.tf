@@ -8,8 +8,8 @@ resource "aws_api_gateway_rest_api" "app" {
 data "template_file" "api_definition" {
   template = file("api/openapi.yaml")
   vars = {
-    apig_invocation_uri    = "arn:aws:apigateway:${var.default_region}:sqs:path/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.app_queue.name}"
-    apig_sqs_send_msg_role = aws_iam_role.apig_sqs_send_msg.arn
+    apig_invocation_uri = "arn:aws:apigateway:${var.default_region}:sqs:path/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.app_queue.name}"
+    apig_role           = aws_iam_role.apig_role.arn
   }
 }
 

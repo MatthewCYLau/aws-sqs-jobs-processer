@@ -10,9 +10,9 @@ const dbclient = new DynamoDBClient({ region: REGION });
 exports.handler = async event => {
   const promises = event.Records.map(record => {
     const params = {
-      TableName: "results",
+      TableName: "jobs",
       Item: {
-        requestId: { S: record.messageId }
+        jobId: { S: record.messageId }
       }
     };
     const data = dbclient.send(new PutItemCommand(params));

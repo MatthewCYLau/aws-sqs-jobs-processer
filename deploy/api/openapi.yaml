@@ -3,7 +3,60 @@ info:
   title: "AWS-SQS-Jobs"
   version: "2020-08-20T12:57:36Z"
 paths:
+  /jobs/{jobId}:
+    get:
+      parameters:
+        - name: "jobId"
+          in: "path"
+          required: true
+          schema:
+            type: "string"
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        credentials: "${apig_role}"
+        uri: "arn:aws:apigateway:us-east-1:dynamodb:action/GetItem"
+        httpMethod: "POST"
+        responses:
+          default:
+            statusCode: "200"
+        requestTemplates:
+          application/json:
+            "{\n    \"TableName\": \"jobs\",\n     \"Key\": {\n  \
+            \    \"jobId\": {\n        \"S\": \"$input.params('jobId')\"\n      }\n\
+            \    }\n \n}"
+        passthroughBehavior: "when_no_templates"
   /jobs:
+    get:
+      responses:
+        "200":
+          description: "200 response"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Empty"
+      x-amazon-apigateway-integration:
+        type: "aws"
+        credentials: "${apig_role}"
+        uri: "arn:aws:apigateway:us-east-1:dynamodb:action/Scan"
+        httpMethod: "POST"
+        responses:
+          default:
+            statusCode: "200"
+            responseTemplates:
+              application/json:
+                "#set($inputRoot = $input.path('$'))\n[\n    #foreach($elem\
+                \ in $inputRoot.Items) {\n        \"jobId\": \"$elem.jobId.S\"\n \
+                \   }#if($foreach.hasNext),#end\n#end\n]\n"
+        requestTemplates:
+          application/json: "{\n    \"TableName\": \"jobs\"\n}\n"
+        passthroughBehavior: "when_no_templates"
     post:
       responses:
         "200":
@@ -13,7 +66,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Empty"
       x-amazon-apigateway-integration:
-        credentials: "${apig_sqs_send_msg_role}"
+        credentials: "${apig_role}"
         uri: "${apig_invocation_uri}"
         httpMethod: "POST"
         responses:

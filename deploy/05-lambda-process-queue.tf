@@ -85,7 +85,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
                 "dynamodb:PutItem"
             ],
             "Resource": [
-              "${aws_dynamodb_table.results.arn}*"
+              "${aws_dynamodb_table.jobs.arn}*"
             ]
         }
     ]
