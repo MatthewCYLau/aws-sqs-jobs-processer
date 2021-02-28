@@ -8,9 +8,11 @@ resource "aws_api_gateway_rest_api" "app" {
 data "template_file" "api_definition" {
   template = file("api/openapi.yaml")
   vars = {
-    apig_invocation_uri               = "arn:aws:apigateway:${var.default_region}:sqs:path/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.app_queue.name}"
-    apig_role                         = aws_iam_role.apig_role.arn
-    get_jobs_request_mapping_template = jsonencode(file("templates/getJobsRequestMappingTemplate.json"))
+    apig_invocation_uri                    = "arn:aws:apigateway:${var.default_region}:sqs:path/${data.aws_caller_identity.current.account_id}/${aws_sqs_queue.app_queue.name}"
+    apig_role                              = aws_iam_role.apig_role.arn
+    get_jobs_request_mapping_template      = jsonencode(file("templates/getJobsRequestMappingTemplate.json"))
+    get_jobs_response_mapping_template     = jsonencode(file("templates/getJobsResponseMappingTemplate.json"))
+    get_job_by_id_request_mapping_template = jsonencode(file("templates/getJobByIdRequestMappingTemplate.json"))
   }
 }
 

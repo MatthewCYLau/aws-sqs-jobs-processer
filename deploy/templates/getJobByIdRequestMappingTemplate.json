@@ -1,0 +1,8 @@
+{
+  "TableName": "jobs",
+  "Key": {
+    "jobId": {
+      "S": "$input.params('jobId')"
+    }
+  }
+}
