@@ -55,7 +55,7 @@ paths:
                 \ in $inputRoot.Items) {\n        \"jobId\": \"$elem.jobId.S\"\n \
                 \   }#if($foreach.hasNext),#end\n#end\n]\n"
         requestTemplates:
-          application/json: "{\n    \"TableName\": \"jobs\"\n}\n"
+          application/json: ${get_jobs_request_mapping_template}
         passthroughBehavior: "when_no_templates"
     post:
       responses:
