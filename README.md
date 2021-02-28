@@ -57,6 +57,12 @@ terraform apply # deploys AWS stack. See output for API url
 terraform destroy # destroys AWS stack
 ```
 
+## Usages
+
+- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job
+- Make a `GET` request to `<API_ENDPOINT>/jobs` to retrieve all jobs
+- Make a `GET` request to `<API_ENDPOINT>/jobs/<JOB_ID>` to retrieve a specific job
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
