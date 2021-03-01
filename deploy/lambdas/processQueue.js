@@ -11,10 +11,21 @@ exports.handler = async event => {
   ///some other stuff to set up the variables below
 
   const promises = event.Records.map(record => {
+    const result = {
+      M: {
+        id: {
+          S: "1"
+        },
+        score: {
+          N: "10"
+        }
+      }
+    };
     const params = {
-      TableName: "results",
+      TableName: "jobs",
       Item: {
-        requestId: { S: record.messageId }
+        jobId: { S: record.messageId },
+        results: { L: [result] }
       }
     };
 

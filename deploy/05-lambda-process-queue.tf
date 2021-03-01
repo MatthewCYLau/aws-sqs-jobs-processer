@@ -22,7 +22,7 @@ resource "aws_lambda_function" "process_queue" {
   # and https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway?in=terraform/aws
 
   s3_bucket = "matlau-lambdas-bucket"
-  s3_key    = "v1.0.0/processQueue.zip"
+  s3_key    = "v1.0.1/processQueue.zip"
   handler   = "index.handler"
   runtime   = "nodejs10.x"
 

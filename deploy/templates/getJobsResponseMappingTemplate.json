@@ -1,7 +1,8 @@
 #set($inputRoot = $input.path('$'))
 [
     #foreach($elem in $inputRoot.Items) {
-        "jobId": "$elem.jobId.S"
+        "jobId": "$elem.jobId.S",
+        "results": $elem.results.L
     }#if($foreach.hasNext),#end
 #end
 ]
