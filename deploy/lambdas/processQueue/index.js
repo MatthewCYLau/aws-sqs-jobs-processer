@@ -1,5 +1,6 @@
 // Load the AWS SDK for Node.js
 const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
+const axios = require("axios");
 
 // Set the region
 const REGION = "us-east-1";
@@ -8,14 +9,15 @@ const REGION = "us-east-1";
 const dbclient = new DynamoDBClient({ region: REGION });
 
 exports.handler = async event => {
+  const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
   const promises = event.Records.map(record => {
-    const result = {
+    const todo = {
       M: {
         id: {
-          S: "1"
+          S: res.data.id.toString()
         },
-        score: {
-          N: "10"
+        todo: {
+          S: res.data.title
         }
       }
     };
@@ -23,7 +25,7 @@ exports.handler = async event => {
       TableName: "jobs",
       Item: {
         jobId: { S: record.messageId },
-        results: { L: [result] }
+        todos: { L: [todo] }
       }
     };
     const data = dbclient.send(new PutItemCommand(params));
