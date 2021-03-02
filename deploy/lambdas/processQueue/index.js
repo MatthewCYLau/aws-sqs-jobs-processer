@@ -11,6 +11,8 @@ const dbclient = new DynamoDBClient({ region: REGION });
 exports.handler = async event => {
   const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
   const promises = event.Records.map(record => {
+    const body = JSON.parse(record.body);
+    const size = body.data.length;
     const todo = {
       M: {
         id: {
@@ -21,11 +23,15 @@ exports.handler = async event => {
         }
       }
     };
+    let todos = [];
+    for (let counter = 0; counter < size; counter++) {
+      todos.push(todo);
+    }
     const params = {
       TableName: "jobs",
       Item: {
         jobId: { S: record.messageId },
-        todos: { L: [todo] }
+        todos: { L: todos }
       }
     };
     const data = dbclient.send(new PutItemCommand(params));

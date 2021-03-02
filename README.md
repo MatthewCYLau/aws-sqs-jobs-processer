@@ -48,6 +48,16 @@ zip -r <FUNCTION_NAME>.zip .
 aws s3 cp <FUNCTION_NAME>.zip s3://<BUCKET_NAME>/v1.0.0/<FUNCTION_NAME>.zip
 ```
 
+## Update Lambda package
+
+- Update the `deploy/lambdas/processQueue/updateFunction.sh` shell script with correct values i.e. Amazon S3 bucket name, and key. See documentation on AWS CLI `update-function-code` [here](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html)
+
+- Run the script:
+
+```bash
+sh deploy/lambdas/processQueue/updateFunction.sh
+```
+
 ## Deploy
 
 ```bash
