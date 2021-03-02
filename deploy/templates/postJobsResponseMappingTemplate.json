@@ -1,0 +1,4 @@
+#set($inputRoot = $input.path('$'))
+{
+    "jobId": "$inputRoot.SendMessageResponse.SendMessageResult.MessageId"
+}

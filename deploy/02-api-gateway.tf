@@ -13,6 +13,7 @@ data "template_file" "api_definition" {
     get_jobs_request_mapping_template      = jsonencode(file("templates/getJobsRequestMappingTemplate.json"))
     get_jobs_response_mapping_template     = jsonencode(file("templates/getJobsResponseMappingTemplate.json"))
     get_job_by_id_request_mapping_template = jsonencode(file("templates/getJobByIdRequestMappingTemplate.json"))
+    post_jobs_response_mapping_template    = jsonencode(file("templates/postJobsResponseMappingTemplate.json"))
   }
 }
 

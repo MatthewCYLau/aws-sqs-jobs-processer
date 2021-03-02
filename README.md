@@ -1,6 +1,8 @@
 # AWS SQS Jobs Processer
 
-A reference project to deploy a serverless, jobs processer on AWS with Terraform
+A reference project to deploy a serverless jobs processer on AWS with Terraform
+
+An over-engineered todo app :sweat_smile:
 
 ![AWS Architecture](img/aws-sqs.JPG)
 
@@ -48,16 +50,6 @@ zip -r <FUNCTION_NAME>.zip .
 aws s3 cp <FUNCTION_NAME>.zip s3://<BUCKET_NAME>/v1.0.0/<FUNCTION_NAME>.zip
 ```
 
-## Update Lambda package
-
-- Update the `deploy/lambdas/processQueue/updateFunction.sh` shell script with correct values i.e. Amazon S3 bucket name, and key. See documentation on AWS CLI `update-function-code` [here](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html)
-
-- Run the script:
-
-```bash
-sh deploy/lambdas/processQueue/updateFunction.sh
-```
-
 ## Deploy
 
 ```bash
@@ -69,9 +61,26 @@ terraform destroy # destroys AWS stack
 
 ## Usages
 
-- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job
+- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job which creates todos. Each item in the `data` array creates a random todo:
+
+```json
+{
+  "data": ["foo", "bar"]
+}
+```
+
 - Make a `GET` request to `<API_ENDPOINT>/jobs` to retrieve all jobs
 - Make a `GET` request to `<API_ENDPOINT>/jobs/<JOB_ID>` to retrieve a specific job
+
+## Update Lambda package
+
+- Update the `deploy/lambdas/processQueue/updateFunction.sh` shell script with correct values i.e. Amazon S3 bucket name, and key. See documentation on AWS CLI `update-function-code` [here](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/lambda/update-function-code.html)
+
+- Run the script:
+
+```bash
+sh deploy/lambdas/processQueue/updateFunction.sh
+```
 
 ## Contributing
 

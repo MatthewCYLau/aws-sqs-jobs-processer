@@ -66,6 +66,8 @@ paths:
         responses:
           default:
             statusCode: "200"
+            responseTemplates:
+              application/json: ${post_jobs_response_mapping_template}
         requestParameters:
           integration.request.header.Content-Type: "'application/x-www-form-urlencoded'"
         requestTemplates:
