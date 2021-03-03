@@ -1,6 +1,6 @@
-# AWS SQS Jobs Processer
+# AWS SQS Jobs Processor
 
-A reference project to deploy a serverless jobs processer on AWS with Terraform
+A reference project to deploy a serverless jobs processor on AWS with Terraform
 
 An over-engineered todo app :sweat_smile:
 
