@@ -26,6 +26,8 @@ paths:
         responses:
           default:
             statusCode: "200"
+            responseTemplates:
+              application/json: ${get_job_by_id_response_mapping_template}
         requestTemplates:
           application/json: ${get_job_by_id_request_mapping_template}
         passthroughBehavior: "when_no_templates"
