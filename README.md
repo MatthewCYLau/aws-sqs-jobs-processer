@@ -1,4 +1,4 @@
-# AWS SQS Jobs Processer
+# AWS SQS Jobs Processor
 
 A reference project to deploy a serverless jobs processor on AWS with Terraform
 
