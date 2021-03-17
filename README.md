@@ -61,11 +61,11 @@ terraform destroy # destroys AWS stack
 
 ## Usages
 
-- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job which creates todos. Each item in the `data` array creates a random todo:
+- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job which creates todos. Each item in the `data` array creates a todo:
 
 ```json
 {
-  "data": ["foo", "bar"]
+  "data": ["foo", "bar"] // creates two todo's foo, and bar
 }
 ```
 
