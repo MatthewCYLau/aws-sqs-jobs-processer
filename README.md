@@ -65,7 +65,7 @@ terraform destroy # destroys AWS stack
 
 ```json
 {
-  "data": ["foo", "bar"] // creates two todo's foo, and bar
+  "data": ["foo", "bar"]
 }
 ```
 

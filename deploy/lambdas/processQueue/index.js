@@ -40,7 +40,9 @@ exports.handler = async event => {
       TableName: "jobs",
       Item: {
         jobId: { S: record.messageId },
-        todos: { L: todos }
+        todos: { L: todos },
+        created: { S: new Date().toISOString() },
+        userId: { S: (Math.floor(Math.random() * 100) + 1).toString() }
       }
     };
     const data = dbclient.send(new PutItemCommand(params));
