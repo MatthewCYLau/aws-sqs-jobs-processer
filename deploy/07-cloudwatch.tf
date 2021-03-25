@@ -11,5 +11,5 @@ resource "aws_cloudwatch_metric_alarm" "process_queue" {
   dimensions = {
     FunctionName = aws_lambda_function.process_queue.function_name
   }
-  alarm_actions = ["arn:aws:sns:us-east-1:830663695860:Default_CloudWatch_Alarms_Topic"]
+  alarm_actions = [aws_sns_topic.app.arn]
 }
