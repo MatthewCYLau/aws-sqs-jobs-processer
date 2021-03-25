@@ -79,7 +79,9 @@ terraform destroy # destroys AWS stack
 - Run the script:
 
 ```bash
-sh deploy/lambdas/processQueue/updateFunction.sh
+cd deploy/lambdas/processQueue # change to lambda directory
+chmod +x updateFunction.sh # set permission to run script
+./updateFunction.sh # run the script
 ```
 
 ## Contributing

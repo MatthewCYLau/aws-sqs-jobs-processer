@@ -18,6 +18,7 @@ const uuidv4 = () =>
 exports.handler = async event => {
   // const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
   const promises = event.Records.map(record => {
+    // const messageAttribute = record.messageAttributes.foo.stringValue;
     const body = JSON.parse(record.body);
     const size = body.data.length;
     const createTodo = todo => {

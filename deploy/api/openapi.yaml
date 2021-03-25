@@ -73,7 +73,7 @@ paths:
         requestParameters:
           integration.request.header.Content-Type: "'application/x-www-form-urlencoded'"
         requestTemplates:
-          application/json: "Action=SendMessage&MessageBody=$input.body"
+          application/json: "Action=SendMessage&MessageBody=$input.body&MessageAttribute.1.Name=foo&MessageAttribute.1.Value.DataType=String&MessageAttribute.1.Value.StringValue=bar"
         passthroughBehavior: "never"
         type: "aws"
 components:
