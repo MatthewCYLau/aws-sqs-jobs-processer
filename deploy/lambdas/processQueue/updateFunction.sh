@@ -1,6 +1,6 @@
 #!/bin/bash
 
-zip -r processQueue.zip index.js node_modules && \
+npm i && zip -r processQueue.zip index.js node_modules && \
 aws s3 cp processQueue.zip \
     s3://matlau-lambdas-bucket/v1.0.1/processQueue.zip && \
 aws lambda update-function-code \
