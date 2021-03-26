@@ -50,7 +50,14 @@ zip -r <FUNCTION_NAME>.zip .
 aws s3 cp <FUNCTION_NAME>.zip s3://<BUCKET_NAME>/v1.0.0/<FUNCTION_NAME>.zip
 ```
 
-## Deploy
+## Deploy Lambda layer
+
+```bash
+cd deploy/lambdas/layer # change to lambda layer directory
+sh updateLayer.sh # uploads lambda layer to S3 bucket
+```
+
+## Deploy AWS stack
 
 ```bash
 cd deploy # change to deploy directory
