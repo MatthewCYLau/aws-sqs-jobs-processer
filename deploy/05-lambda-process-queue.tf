@@ -22,12 +22,12 @@ resource "aws_lambda_function" "process_queue" {
   # and https://learn.hashicorp.com/tutorials/terraform/lambda-api-gateway?in=terraform/aws
 
   s3_bucket = "matlau-lambdas-bucket"
-  s3_key    = "v1.0.1/processQueue.zip"
+  s3_key    = "v1.0.0/processQueue.zip"
   handler   = "index.handler"
   runtime   = "nodejs10.x"
 
-  role = aws_iam_role.queue_processer_lambda.arn
-
+  role   = aws_iam_role.queue_processer_lambda.arn
+  layers = [aws_lambda_layer_version.app.arn]
 }
 
 resource "aws_iam_role" "queue_processer_lambda" {
@@ -91,4 +91,13 @@ resource "aws_iam_role_policy" "lambda_policy" {
     ]
 }
 EOF
+}
+
+resource "aws_lambda_layer_version" "app" {
+
+  s3_bucket  = "matlau-lambdas-bucket"
+  s3_key     = "v1.0.0/layer.zip"
+  layer_name = "process-queue-layer"
+
+  compatible_runtimes = ["nodejs10.x"]
 }
