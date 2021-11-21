@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "react-serverless-app-tf-state"
+    bucket = "aws-sqs-jobs-tf-state"
     key    = "terraform.tfstate"
     region = "us-east-1"
   }

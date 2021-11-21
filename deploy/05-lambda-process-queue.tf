@@ -8,7 +8,7 @@
 # }
 
 resource "aws_lambda_function" "process_queue" {
-  function_name = "ProcessQueueMessage"
+  function_name = "process-jobs"
 
   # Attributes to deploy function as archive file
 
@@ -24,7 +24,7 @@ resource "aws_lambda_function" "process_queue" {
   s3_bucket = "matlau-lambdas-bucket"
   s3_key    = "v1.0.0/processQueue.zip"
   handler   = "index.handler"
-  runtime   = "nodejs10.x"
+  runtime   = "nodejs14.x"
 
   role   = aws_iam_role.queue_processer_lambda.arn
   layers = [aws_lambda_layer_version.app.arn]
