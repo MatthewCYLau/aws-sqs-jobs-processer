@@ -3,7 +3,7 @@ info:
   title: "AWS-SQS-Jobs"
   version: "2020-08-20T12:57:36Z"
 paths:
-  /jobs/{jobId}:
+  /api/v1/jobs/{jobId}:
     get:
       parameters:
         - name: "jobId"
@@ -31,7 +31,7 @@ paths:
         requestTemplates:
           application/json: ${get_job_by_id_request_mapping_template}
         passthroughBehavior: "when_no_templates"
-  /jobs:
+  /api/v1/jobs:
     get:
       responses:
         "200":

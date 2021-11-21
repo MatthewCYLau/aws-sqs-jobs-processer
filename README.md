@@ -68,7 +68,7 @@ terraform destroy # destroys AWS stack
 
 ## Usages
 
-- Make a `POST` request to `<API_ENDPOINT>/jobs` to trigger a job which creates todos. Each item in the `data` array creates a todo:
+- Make a `POST` request to `<API_ENDPOINT>/api/v1/jobs` to trigger a job which creates todos. Each item in the `data` array creates a todo:
 
 ```json
 {
@@ -76,8 +76,8 @@ terraform destroy # destroys AWS stack
 }
 ```
 
-- Make a `GET` request to `<API_ENDPOINT>/jobs` to retrieve all jobs
-- Make a `GET` request to `<API_ENDPOINT>/jobs/<JOB_ID>` to retrieve a specific job
+- Make a `GET` request to `<API_ENDPOINT>/api/v1/jobs` to retrieve all jobs
+- Make a `GET` request to `<API_ENDPOINT>/api/v1/jobs/<JOB_ID>` to retrieve a specific job
 
 ## Update Lambda package
 
