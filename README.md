@@ -6,6 +6,8 @@ An over-engineered todo app :sweat_smile:
 
 ![AWS Architecture](img/aws-sqs.JPG)
 
+App URL [here](https://pypfonxmfa.execute-api.us-east-1.amazonaws.com/staging/api/v1/jobs)
+
 ## Pre-requisite
 
 - Make sure you have installed [Terraform](https://learn.hashicorp.com/tutorials/terraform/install-cli), [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-mac.html#cliv2-mac-prereq), and configured a `default` AWS CLI profile (see doc [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html#cli-configure-quickstart-profiles))
