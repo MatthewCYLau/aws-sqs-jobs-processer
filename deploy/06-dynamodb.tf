@@ -9,4 +9,6 @@ resource "aws_dynamodb_table" "jobs" {
     name = "jobId"
     type = "S"
   }
+
+  tags = local.tags
 }

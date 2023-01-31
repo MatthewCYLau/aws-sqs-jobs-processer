@@ -5,7 +5,5 @@ resource "aws_sqs_queue" "app_queue" {
   message_retention_seconds = 86400
   receive_wait_time_seconds = 0
 
-  tags = {
-    Environment = var.environment
-  }
+  tags = local.tags
 }
