@@ -4,7 +4,7 @@ A reference project to deploy a serverless jobs processor on AWS with Terraform
 
 An over-engineered todo app :sweat_smile:
 
-App URL here: `https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs`(https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs)
+App URL here: [`https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs`](https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs)
 
 ![AWS Architecture](img/aws-sqs.JPG)
 
