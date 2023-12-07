@@ -74,7 +74,7 @@ terraform destroy # destroys AWS stack
 
 ```json
 {
-  "data": 10 // returns Fibonacci sequence with 10 numbers
+  "data": 10
 }
 ```
 
