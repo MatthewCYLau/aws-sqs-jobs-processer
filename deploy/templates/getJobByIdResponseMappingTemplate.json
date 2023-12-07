@@ -1,13 +1,11 @@
 #set($inputRoot = $input.path('$'))
  {
     "jobId": "$inputRoot.Item.jobId.S",
-    "todos": [
-        #foreach($elem in $inputRoot.Item.todos.L) {
-            "id": "$elem.M.id.S",
-            "todo": "$elem.M.todo.S"
+    "results": [
+        #foreach($elem in $inputRoot.Item.results.L) {
+            "number": $elem.N,
         }#if($foreach.hasNext),#end
     #end
     ],
     "created": "$inputRoot.Item.created.S",
-    "userId": "$inputRoot.Item.userId.S",
 }

@@ -2,7 +2,7 @@
 
 A reference project to deploy a serverless jobs processor on AWS with Terraform
 
-An over-engineered todo app :sweat_smile:
+A service which returns Fibonacci sequence
 
 App URL here: [`https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs`](https://8nalvgvzrl.execute-api.us-east-1.amazonaws.com/production/api/v1/jobs)
 
@@ -70,11 +70,11 @@ terraform destroy # destroys AWS stack
 
 ## Usages
 
-- Make a `POST` request to `<API_ENDPOINT>/api/v1/jobs` to trigger a job which creates todos. Each item in the `data` array creates a todo:
+- Make a `POST` request to `<API_ENDPOINT>/api/v1/jobs` to trigger a job which returns Fibonacci sequence with N numbers
 
 ```json
 {
-  "data": ["foo", "bar"]
+  "data": 10 // returns Fibonacci sequence with 10 numbers
 }
 ```
 

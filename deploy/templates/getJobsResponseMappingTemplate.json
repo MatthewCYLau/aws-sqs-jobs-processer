@@ -2,15 +2,13 @@
 [
     #foreach($elem in $inputRoot.Items) {
         "jobId": "$elem.jobId.S",
-        "todos": [
-            #foreach($elem in $elem.todos.L) {
-                "id": "$elem.M.id.S",
-                "todo": "$elem.M.todo.S"
+        "results": [
+            #foreach($elem in $elem.results.L) {
+                "number": $elem.N,
             }#if($foreach.hasNext),#end
         #end
         ],
         "created": "$elem.created.S",
-        "userId": "$elem.userId.S",
     }#if($foreach.hasNext),#end
 #end
 ]

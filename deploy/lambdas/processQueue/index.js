@@ -1,50 +1,39 @@
-// Load the AWS SDK for Node.js
 const { DynamoDBClient, PutItemCommand } = require("@aws-sdk/client-dynamodb");
-// const axios = require("axios");
 
-// Set the region
 const REGION = "us-east-1";
 
-// Create DynamoDB service object
 const dbclient = new DynamoDBClient({ region: REGION });
 
-const uuidv4 = () =>
-  "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
+const fibonacci = (num) => {
+  const arr = [0, 1];
 
-exports.handler = async event => {
-  // const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
-  const promises = event.Records.map(record => {
-    // const messageAttribute = record.messageAttributes.foo.stringValue;
+  if (num < 3) {
+    return arr.slice(0, num);
+  }
+
+  for (let i = 1; i < num - 1; i++) {
+    const next = arr[i] + arr[i - 1];
+    arr.push(next);
+  }
+  return arr;
+};
+
+exports.handler = async (event) => {
+  const promises = event.Records.map((record) => {
     const body = JSON.parse(record.body);
-    const size = body.data.length;
-    const createTodo = todo => {
-      return {
-        M: {
-          id: {
-            S: uuidv4()
-          },
-          todo: {
-            S: todo
-          }
-        }
-      };
-    };
-    let todos = [];
-    for (let counter = 0; counter < size; counter++) {
-      todos.push(createTodo(body.data[counter]));
-    }
+    const num = body.data;
+    const results = fibonacci(num);
     const params = {
       TableName: "jobs",
       Item: {
         jobId: { S: record.messageId },
-        todos: { L: todos },
+        results: {
+          L: results.map((x) => {
+            return { N: x.toString() };
+          }),
+        },
         created: { S: new Date().toISOString() },
-        userId: { S: (Math.floor(Math.random() * 100) + 1).toString() }
-      }
+      },
     };
     const data = dbclient.send(new PutItemCommand(params));
     return data;
