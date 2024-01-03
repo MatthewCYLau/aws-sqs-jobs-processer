@@ -20,3 +20,19 @@ resource "aws_api_gateway_deployment" "app" {
   rest_api_id = aws_api_gateway_rest_api.app.id
   stage_name  = var.environment
 }
+
+resource "aws_api_gateway_usage_plan" "daily_limit" {
+  name        = "${var.app_name}-daily-limit"
+  description = "${var.app_name} daily limit"
+
+  api_stages {
+    api_id = aws_api_gateway_rest_api.app.id
+    stage  = var.environment
+  }
+
+  quota_settings {
+    limit  = 10
+    offset = 0
+    period = "DAY"
+  }
+}
